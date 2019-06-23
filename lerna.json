@@ -1,0 +1,11 @@
+{
+  "packages": ["packages/components/*", "packages/store/*"],
+  "version": "indipendent",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "conventionalCommits": true
+    }
+  }
+}

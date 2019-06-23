@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "jsx": "react",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "removeComments": true,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "forceConsistentCasingInFileNames": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true,
+    "babelCore": "@babel/core"
+  },
+  "include": ["packages"],
+  "exclude": ["node_modules", "packages/**/dist"]
+}

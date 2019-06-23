@@ -1,0 +1,131 @@
+{
+  "name": "ulisse",
+  "workspaces": [
+    "packages/components/*",
+    "packages/store/*"
+  ],
+  "private": true,
+  "description": "Test monorepo with ts and lerna",
+  "scripts": {
+    "prepare": "lerna link --force-local",
+    "build:libs": "yarn lerna:exec:no-ui --parallel 'BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .js,.ts,.tsx --no-comments'",
+    "build": "run-s clean build:libs build:ui",
+    "build:watch": "yarn lerna:exec:no-ui --parallel 'BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .js,.ts,.tsx --no-comments --watch'",
+    "build-storybook": "build-storybook",
+    "build:declarations": "run-p build:declarations:*",
+    "build:declarations:js": "yarn lerna:exec:js --stream 'mkdir -p dist && cp src/index.d.ts dist/index.d.ts'",
+    "build:declarations:ts": "yarn lerna:exec:ts --stream 'tsc --project ./tsconfig.build.json'",
+    "build:ui": "yarn lerna:exec:ui yarn build",
+    "clean": "rm -rf packages/*/dist",
+    "clean:modules": "rm -rf node_modules packages/*/node_modules yarn.lock",
+    "clean:install": "npm-run-all clean:modules clean && yarn",
+    "commit": "git-cz",
+    "fix": "run-p -c 'lint:ts-* --fix'",
+    "lerna:exec:ui": "lerna exec --scope ui",
+    "lerna:exec": "lerna exec --ignore ui",
+    "lint": "run-p -c lint:*",
+    "lint:css": "stylelint 'packages/**/*.ts{,x}'",
+    "lint:ts": "run-p -c lint:ts-*",
+    "lint:ts-prod": "tslint --config tslint.prod.json 'packages/**/*.ts{,x}'",
+    "lint:ts-test": "tslint --config tslint.test.json 'packages/**/*.{test,story}.ts{,x}'",
+    "prebuild:libs": "run-s build:declarations tsc lint",
+    "prerelease": "yarn build",
+    "release": "cross-env HUSKY_BYPASS=true lerna publish",
+    "start": "run-p build:watch start:ui",
+    "start:ui": "yarn lerna:exec:ui yarn start",
+    "storybook": "start-storybook -p 6006",
+    "test": "jest",
+    "test:ui": "yarn lerna:exec:ui 'yarn test --watchAll'",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "test"
+  },
+  "author": "",
+  "license": "MIT",
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "@types/enzyme": "^3.9.4",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.10",
+    "@types/react": "16.8.22",
+    "@types/react-dom": "16.8.4",
+    "@types/storybook__addon-actions": "^3.4.3",
+    "@types/storybook__addon-knobs": "^5.0.1",
+    "@types/storybook__addon-links": "^3.3.5",
+    "@types/storybook__react": "^4.0.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.1",
+    "commitizen": "^3.1.1",
+    "cross-env": "^5.2.0",
+    "cz-lerna-changelog": "^2.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.0.0-beta6",
+    "husky": "^2.4.1",
+    "jest": "^24.8.0",
+    "jest-styled-components": "^6.3.3",
+    "lerna": "^3.15.0",
+    "lint-staged": "^8.2.1",
+    "moment": "^2.22.2",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.18.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "styled-components": "^4.3.2",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.2",
+    "webpack": "4.35.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "[[ -n $HUSKY_BYPASS ]] || commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,md,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-lerna-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
