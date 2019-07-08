@@ -13,6 +13,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       extends: './babel.config.js',
+      diagnostics: false,
     },
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
@@ -20,10 +21,8 @@ module.exports = {
     '@taxi/(.+)$': '<rootDir>packages/$1/src',
   },
   modulePathIgnorePatterns: ['dist'],
-  notify: true,
-  notifyMode: 'always',
   roots: ['<rootDir>packages'],
-  setupTestFrameworkScriptFile: '<rootDir>jest/setupTests.ts',
+  setupFilesAfterEnv: ['<rootDir>jest/setupTests.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   testMatch: ['**/__tests__/*.+(ts|tsx|js)', '**/*.test.+(ts|tsx|js)'],
   testPathIgnorePatterns: ['packages/ui'],

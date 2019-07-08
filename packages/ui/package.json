@@ -3,14 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ramda": "^0.26.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
   },
   "devDependencies": {
-    "react-scripts": "2.1.5",
-    "ts-loader": "^5.3.3",
-    "ts-jest": "^23.10.5",
-    "typescript": "3.3.3"
+    "react-scripts": "2.1.5"
   },
   "scripts": {
     "start": "react-scripts start",

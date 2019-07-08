@@ -1,0 +1,22 @@
+{
+  "name": "@shipfirst/store",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "type": "dist/index.d.ts",
+  "dependencies": {
+    "@types/node": "^12.0.10",
+    "lodash": "^4.17.11",
+    "ramda": "^0.26.1",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^1.0.3",
+    "redux-saga-thunk": "^0.7.3"
+  },
+  "peerDependencies": {
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.3",
+    "typesafe-actions": "^4.4.2"
+  }
+}
