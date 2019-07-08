@@ -1,38 +1,39 @@
 {
-  "name": "ulisse",
+  "name": "shipfirst",
   "workspaces": [
     "packages/*"
   ],
   "private": true,
   "description": "Test monorepo with ts and lerna",
   "scripts": {
-    "prepare": "lerna link --force-local",
-    "build:libs": "yarn lerna:exec --parallel 'BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .js,.ts,.tsx --no-comments'",
-    "build": "run-s clean build:libs build:ui",
+    "build:declarations": "yarn lerna:exec --sort 'tsc --project ./tsconfig.build.json'",
     "build:libs:watch": "yarn lerna:exec --parallel 'BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .js,.ts,.tsx --no-comments --watch'",
-    "build-storybook": "build-storybook",
-    "build:declarations": "yarn lerna:exec --parallel 'tsc --project ./tsconfig.build.json'",
+    "build:libs": "yarn lerna:exec --parallel 'BABEL_ENV=build babel src --root-mode upward --out-dir dist --source-maps --extensions .js,.ts,.tsx --no-comments'",
+    "build:storybook": "build-storybook",
     "build:ui": "yarn lerna:exec:ui yarn build",
-    "clean": "rm -rf packages/*/dist",
-    "clean:modules": "rm -rf node_modules packages/*/node_modules yarn.lock",
+    "build": "run-s clean build:libs build:ui",
     "clean:install": "npm-run-all clean:modules clean && yarn",
+    "clean:modules": "rm -rf node_modules packages/*/node_modules yarn.lock",
+    "clean": "rm -rf packages/*/dist",
+    "commit:amend": "cross-env HUSKY_BYPASS=true git commit --amend",
     "commit": "git-cz",
     "fix": "run-p -c 'lint:ts-* --fix'",
     "lerna:exec:ui": "lerna exec --scope ui",
     "lerna:exec": "lerna exec --ignore ui",
-    "lint": "run-p -c lint:*",
     "lint:css": "stylelint 'packages/**/*.ts{,x}'",
-    "lint:ts": "run-p -c lint:ts-*",
     "lint:ts-prod": "tslint --config tslint.prod.json 'packages/**/*.ts{,x}'",
     "lint:ts-test": "tslint --config tslint.test.json 'packages/**/*.{test,story}.ts{,x}'",
+    "lint:ts": "run-p -c lint:ts-*",
+    "lint": "run-p -c lint:*",
     "postbuild:libs": "yarn build:declarations",
+    "prepare": "lerna link --force-local",
     "prerelease": "yarn build",
     "release": "cross-env HUSKY_BYPASS=true lerna publish",
-    "start": "run-p build:watch start:ui",
     "start:ui": "yarn lerna:exec:ui yarn start",
+    "start": "run-p build:watch start:ui",
     "storybook": "start-storybook -p 6006",
-    "test": "jest",
     "test:ui": "yarn lerna:exec:ui 'yarn test --watchAll'",
+    "test": "jest",
     "tsc": "tsc"
   },
   "repository": {
@@ -42,7 +43,8 @@
   "author": "",
   "license": "MIT",
   "resolutions": {
-    "babel-core": "^7.0.0-bridge.0"
+    "babel-core": "^7.0.0-bridge.0",
+    "@types/react": "^16.8.22"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -110,7 +112,7 @@
     "hooks": {
       "commit-msg": "[[ -n $HUSKY_BYPASS ]] || commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook"
+      "prepare-commit-msg": "[[ -n $HUSKY_BYPASS ]] || exec < /dev/tty && git cz --hook"
     }
   },
   "lint-staged": {

@@ -10,7 +10,12 @@
     "removeComments": true,
     "rootDir": "./",
     "baseUrl": "./",
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"],
+    "paths": {
+      "@shipfirst/*": ["packages/*/src"],
+      "*": ["node_modules", "packages"]
+    }
   },
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,

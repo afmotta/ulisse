@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/components/*", "packages/store/*"],
+  "packages": ["packages/*"],
   "version": "indipendent",
   "useWorkspaces": true,
   "npmClient": "yarn",
