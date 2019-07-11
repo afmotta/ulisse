@@ -1,4 +1,4 @@
-import { configureStore } from '@shipfirst/store';
+import { configureStore } from '@shipfirst/core';
 import { combineReducers } from 'redux';
 import { fork } from 'redux-saga/effects';
 import { ActionType, StateType } from 'typesafe-actions';
@@ -24,7 +24,7 @@ const rootSaga = function*() {
   yield fork(saga);
 };
 
-declare module '@shipfirst/store' {
+declare module '@shipfirst/core' {
   interface Types {
     RootState: StateType<typeof rootReducer>;
   }
@@ -40,7 +40,4 @@ declare module 'typesafe-actions' {
 export default configureStore<
   StateType<typeof rootReducer>,
   ActionType<typeof rootAction>
->({
-  reducer: rootReducer,
-  saga: rootSaga,
-});
+>(rootReducer, rootSaga);

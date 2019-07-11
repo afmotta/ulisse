@@ -1,6 +1,6 @@
 import { prop } from 'ramda';
 import { createSelector } from 'reselect';
-import { RootState } from '@shipfirst/store';
+import { RootState } from '@shipfirst/core';
 import { TodoState } from './types';
 
 const getState = (state: RootState): TodoState => state.todos;

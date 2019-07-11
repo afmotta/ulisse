@@ -1,4 +1,4 @@
-# @shipfirst/store
+# @shipfirst/core
 
 > Redux store configuration with opinionated defaults
 
@@ -11,6 +11,7 @@ Utility for creating a redux store, with the following libraries:
 - redux-logger
 - redux-devtools-extension
 - redux-persist
+- firebase
 
 The configurator comes with an opinionated default configuration, that can be customized padding a configurator object.
 
@@ -27,16 +28,16 @@ const rootAction = ...
 const { store, persistor } = configureStore<
   StateType<typeof rootReducer>,
   ActionType<typeof rootAction>
->({
-  reducer: rootReducer,
-  saga: rootSaga,
-});
+>(
+  rootReducer,
+  rootSaga,
+);
 ```
 
 ```javascript
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { ConnectedApp } from '@shipfirst/store';
+import { ConnectedApp } from '@shipfirst/core';
 
 <ConnectedApp {...store}>
   <Counter />
@@ -50,13 +51,16 @@ using custom configuration:
 configureStore<
   StateType<typeof rootReducer>,
   ActionType<typeof rootAction>
->({
-  reducer: rootReducer,
-  saga: rootSaga,
-  devTools: {...},
-  log: {...},
-  persist: {...},
-  enhancers: [...],
-  middlewares: [...],
-});
+>(
+  rootReducer,
+  rootSaga,
+  {
+    devTools: {...},
+    firebase: {...},
+    log: {...},
+    persist: {...},
+    enhancers: [...],
+    middlewares: [...],
+  }
+);
 ```

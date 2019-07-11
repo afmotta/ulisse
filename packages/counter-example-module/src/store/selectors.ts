@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { RootState } from '@shipfirst/store';
+import { RootState } from '@shipfirst/core';
 import { CounterState } from './reducer';
 
 const getState = (state: RootState): CounterState => state.counter;

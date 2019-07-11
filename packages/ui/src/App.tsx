@@ -4,7 +4,7 @@ import Todos from './components/todos/todos';
 
 import './App.css';
 import store from './store/store';
-import { ConnectedApp } from '@shipfirst/store';
+import { ConnectedApp } from '@shipfirst/core';
 
 class App extends Component {
   public render() {

@@ -18,7 +18,7 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   moduleNameMapper: {
-    '@taxi/(.+)$': '<rootDir>packages/$1/src',
+    '@shipfirst/(.+)$': '<rootDir>packages/$1/src',
   },
   modulePathIgnorePatterns: ['dist'],
   roots: ['<rootDir>packages'],

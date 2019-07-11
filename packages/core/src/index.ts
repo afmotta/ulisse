@@ -17,45 +17,43 @@ import {
   PersistConfig,
   Persistor,
 } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware, { Saga } from 'redux-saga';
 import { middleware as thunkMiddleware } from 'redux-saga-thunk';
+import firebaseApp from 'firebase/app';
 
 export interface Types {}
 
 export type RootState = Types extends { RootState: infer T } ? T : any;
 
+type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  databaseURL: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+};
+
 /**
  * Options for `configureStore()`.
  */
 export interface ConfigureStoreOptions<S = any, A extends Action = AnyAction> {
-  /**
-   * A single reducer function that will be used as the root reducer.
-   */
-  reducer: Reducer<S, A>;
-
-  /*
-   * A single saga that is run on the middleware
-   */
-  saga: Saga<any[]>;
-
-  /**
-   * An array of Redux middleware to install.
-   */
-  middlewares?: Middleware<{}, S>[];
-
   /*
    * Devtols configuration. Use 'true' for the default configuration,
    * or an object to pass custom configuration.
    */
   devTools?: boolean | EnhancerOptions;
 
-  /*
-   * Whether to add a pesistance layer to the store. Use boolean for a default opinionated configuration
-   or an Object for custom configuration.
+  /**
+   * The store enhancers to apply.
    */
-  persist?: boolean | PersistConfig;
+  enhancers?: StoreEnhancer[];
+
+  /**
+   * Wether to use firebase as a service
+   */
+  firebase?: FirebaseConfig | undefined;
 
   /*
    * Whether to use redux logger. Use boolean for a default opinionated configuration
@@ -64,9 +62,15 @@ export interface ConfigureStoreOptions<S = any, A extends Action = AnyAction> {
   log?: boolean | ReduxLoggerOptions;
 
   /**
-   * The store enhancers to apply.
+   * An array of Redux middleware to install.
    */
-  enhancers?: StoreEnhancer[];
+  middlewares?: Middleware<{}, S>[];
+
+  /*
+   * Whether to add a pesistance layer to the store. Use boolean for a default opinionated configuration
+   or an Object for custom configuration.
+   */
+  persist?: boolean | PersistConfig;
 }
 
 /**
@@ -84,19 +88,20 @@ const DEFAULT_PERSIST_CONFIG = {
 };
 
 export const configureStore = <S = any, A extends Action = AnyAction>(
-  config: ConfigureStoreOptions<S, A>,
+  reducer: Reducer<S, A>,
+  saga: Saga<any[]>,
+  config: ConfigureStoreOptions<S, A> = {},
 ): {
   store: Store<S, A>;
   persistor: Persistor | undefined;
 } => {
   const {
-    reducer,
-    saga,
-    middlewares: userMiddlewares = [],
-    enhancers = [],
     devTools = true,
-    persist = true,
+    enhancers = [],
+    firebase,
     log = true,
+    middlewares: userMiddlewares = [],
+    persist = true,
   } = config;
   let finalCompose = compose;
 
@@ -138,7 +143,10 @@ export const configureStore = <S = any, A extends Action = AnyAction>(
   } else {
     store = createStore(reducer, undefined, composedEnhancer);
   }
-  sagaMiddleware.run(saga);
+  const services = {
+    firebase: firebase && firebaseApp.initializeApp(firebase),
+  };
+  sagaMiddleware.run(saga, services);
   return { store, persistor };
 };
 
