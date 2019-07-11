@@ -1,0 +1,4 @@
+---
+to: packages/<%= scope %>-store-<%= name %>/src/reducer.unit.test.ts
+---
+import reducer from './reducer';

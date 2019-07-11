@@ -1,0 +1,13 @@
+---
+to: packages/<%= scope %>-store-<%= name %>/tsconfig.build.json
+---
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "declarationDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "types": []
+  },
+  "include": ["./src"]
+}

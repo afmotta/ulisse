@@ -1,0 +1,11 @@
+---
+to: packages/<%= scope %>-store-<%= name %>/src/selectors.ts
+---
+import { createSelector } from 'reselect';
+import { <%= Name %>State, KEY } from './reducer';
+
+type RootState = {
+  [KEY]: TestState;
+};
+
+const getState = (state: RootState): <%= Name %>State => state.<%= name %>;

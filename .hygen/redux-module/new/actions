@@ -1,0 +1,10 @@
+---
+to: packages/<%= scope %>-store-<%= name %>/src/actions.ts
+---
+import { createStandardAction } from 'typesafe-actions';
+
+/* 
+add here the actions
+ad ex. 
+export const increment = createStandardAction('INCREMENT_COUNTER')<undefined>();
+*/

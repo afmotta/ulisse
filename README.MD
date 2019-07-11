@@ -1,3 +1,15 @@
+# ShipFirst
+
+## Create a new redux module
+
+Using Hygen, we can create a new redux module with the command 
+
+```sh
+$ yarn new:redux
+```
+
+and following the instructions.
+
 # Monorepo
 
 Note that this repo has been forked to demonstrate adding a create-react-app based application to the repo.

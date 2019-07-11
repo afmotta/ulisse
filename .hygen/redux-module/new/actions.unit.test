@@ -1,0 +1,4 @@
+---
+to: packages/<%= scope %>-store-<%= name %>/src/actions.unit.test.ts
+---
+import * as actions from './actions';
