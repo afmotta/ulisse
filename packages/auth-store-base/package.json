@@ -1,0 +1,14 @@
+{
+  "name": "@shipfirst/auth-store-base",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "4.17.11",
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.3",
+    "reselect": "^4.0.0",
+    "typesafe-actions": "^4.4.2"
+  }
+}

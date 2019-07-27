@@ -94,11 +94,12 @@ export const configureStore = <S = any, A extends Action = AnyAction>(
 ): {
   store: Store<S, A>;
   persistor: Persistor | undefined;
+  firebase: firebaseApp.app.App | undefined;
 } => {
   const {
     devTools = true,
     enhancers = [],
-    firebase,
+    firebase: firebaseConfig,
     log = true,
     middlewares: userMiddlewares = [],
     persist = true,
@@ -143,11 +144,10 @@ export const configureStore = <S = any, A extends Action = AnyAction>(
   } else {
     store = createStore(reducer, undefined, composedEnhancer);
   }
-  const services = {
-    firebase: firebase && firebaseApp.initializeApp(firebase),
-  };
+  const firebase = firebaseConfig && firebaseApp.initializeApp(firebaseConfig);
+  const services = { firebase };
   sagaMiddleware.run(saga, services);
-  return { store, persistor };
+  return { firebase, store, persistor };
 };
 
 export { ConnectedApp } from './ConnectedApp';

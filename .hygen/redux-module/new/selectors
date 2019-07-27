@@ -5,7 +5,7 @@ import { createSelector } from 'reselect';
 import { <%= Name %>State, KEY } from './reducer';
 
 type RootState = {
-  [KEY]: TestState;
-};
+  [KEY]: <%= Name %>State;
+}
 
 const getState = (state: RootState): <%= Name %>State => state.<%= name %>;
