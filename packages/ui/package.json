@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@shipfirst/core": "^0.0.1",
+    "@shipfirst/react-components": "^0.0.1",
+    "@shipfirst/theme-example": "^0.0.1",
     "ramda": "^0.26.1",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-dom": "^16.8.2",
+    "react": "^16.8.2"
   },
   "devDependencies": {
     "react-scripts": "2.1.5"

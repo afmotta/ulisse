@@ -1,0 +1,20 @@
+{
+  "name": "@shipfirst/theme-example",
+  "version": "0.0.1",
+  "description": "Example theme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.dev.azure.com:v3/shipfirst/shipfirst/shipfirst"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@shipfirst/react-components": "^0.0.1"
+  }
+}

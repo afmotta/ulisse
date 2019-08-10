@@ -13,7 +13,7 @@ const state = {
   },
 };
 
-describe('user selectors', () => {
+describe('auth-store-base selectors', () => {
   describe('getIsAuthenticated', () => {
     it('returns isAuthenticated value', () => {
       expect(selectors.getIsAuthenticated(state)).toBe(true);

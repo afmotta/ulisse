@@ -1,5 +1,5 @@
 ---
-to: packages/<%= scope %>-store-<%= name %>/src/sagas.ts
+to: packages/store/<%= name %>/src/sagas.ts
 ---
 import {} from 'redux-saga/effects';
 import {} from './actions';

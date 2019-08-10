@@ -1,0 +1,35 @@
+{
+  "name": "@shipfirst/react-components",
+  "version": "0.0.1",
+  "description": "Shipfirst React components library",
+  "license": "ISC",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.dev.azure.com:v3/shipfirst/shipfirst/shipfirst"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/react": "^5.1.9",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "jest": "^24.8.0",
+    "jest-styled-components": "^6.3.3",
+    "react-test-renderer": "^16.8.6",
+    "react-testing-library": "^8.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.14",
+    "react": "^16.8.6",
+    "styled-components": "^4.3.2"
+  }
+}

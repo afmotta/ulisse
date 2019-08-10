@@ -1,6 +1,5 @@
 import { eventChannel } from 'redux-saga';
 import { call, cancelled, fork, put, take } from 'redux-saga/effects';
-import { SagaIterator } from '@redux-saga/core';
 import fb from 'firebase';
 import * as actions from './actions';
 import { AuthData } from './types';
@@ -14,7 +13,7 @@ function* authStateChannel(auth: fb.auth.Auth) {
   );
 }
 
-export function* watchForAuthUpdate(firebase: fb.app.App): SagaIterator {
+export function* watchForAuthUpdate(firebase: fb.app.App) {
   const auth = firebase.auth();
   const channel = yield call(authStateChannel, auth);
   try {
@@ -23,7 +22,7 @@ export function* watchForAuthUpdate(firebase: fb.app.App): SagaIterator {
         const {
           authData,
           error,
-        }: { authData: AuthData; error: Error } = yield take(channel);
+        }: { authData: AuthData | null; error: Error } = yield take(channel);
         if (error) {
           yield put(actions.updateAuthFailure(error));
         } else if (authData) {
@@ -40,6 +39,6 @@ export function* watchForAuthUpdate(firebase: fb.app.App): SagaIterator {
   }
 }
 
-export default function*({ firebase }: { firebase: fb.app.App }): SagaIterator {
+export default function* root({ firebase }: { firebase: fb.app.App }) {
   yield fork(watchForAuthUpdate, firebase);
 }

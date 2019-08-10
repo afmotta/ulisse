@@ -1,8 +1,8 @@
 ---
-to: packages/<%= scope %>-store-<%= name %>/src/index.ts
+to: packages/store/<%= name %>/src/index.ts
 ---
 // module <%= Name %>
-export { default as reducer } from './reducer';
+export { default as reducer, KEY } from './reducer';
 export { default as saga } from './sagas';
 import * as _actions from './actions';
 export const actions = _actions;

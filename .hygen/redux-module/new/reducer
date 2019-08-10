@@ -1,5 +1,5 @@
 ---
-to: packages/<%= scope %>-store-<%= name %>/src/reducer.ts
+to: packages/store/<%= name %>/src/reducer.ts
 ---
 import { createReducer } from 'typesafe-actions';
 import * as actions from './actions';

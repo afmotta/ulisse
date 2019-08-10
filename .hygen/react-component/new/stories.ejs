@@ -1,0 +1,9 @@
+---
+to: packages/<%= destinationFolder %>/src/components/<%= level %>s/<%= name %>/<%= name %>.stories.tsx
+---
+import * as React from 'react'
+import { storiesOf } from '@storybook/react'
+import { <%= name %> } from './<%= name %>'
+
+storiesOf('<%= h.capitalize(level) %>s|<%= name %>', module).add('default', () => ( <<%=
+name %> /> ))

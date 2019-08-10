@@ -1,7 +1,7 @@
 module.exports = {
   clearMocks: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'clover'],
+  coverageReporters: ['text', 'clover', 'html'],
   coverageThreshold: {
     global: {
       branches: 80,
@@ -29,4 +29,4 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
-};
+}

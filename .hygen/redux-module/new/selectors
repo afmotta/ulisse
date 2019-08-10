@@ -1,5 +1,5 @@
 ---
-to: packages/<%= scope %>-store-<%= name %>/src/selectors.ts
+to: packages/store/<%= name %>/src/selectors.ts
 ---
 import { createSelector } from 'reselect';
 import { <%= Name %>State, KEY } from './reducer';

@@ -1,0 +1,7 @@
+---
+inject: true
+to: packages/<%= destinationFolder %>/src/index.ts
+append: true
+skip_if: export { <%= name %> } from './components/<%= level %>s/<%= name %>'
+---
+export { <%= name %> } from './components/<%= level %>s/<%= name %>'

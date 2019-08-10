@@ -1,5 +1,5 @@
 ---
-to: packages/<%= scope %>-store-<%= name %>/src/actions.ts
+to: packages/store/<%= name %>/src/actions.ts
 ---
 import { createStandardAction } from 'typesafe-actions';
 

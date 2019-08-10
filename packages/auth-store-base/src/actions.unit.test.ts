@@ -1,7 +1,6 @@
 import * as actions from './actions';
-import { User } from 'firebase';
 
-describe('user actions', () => {
+describe('auth-store-base actions', () => {
   describe('updateAuthSuccess', () => {
     it('returns an action', () => {
       expect(

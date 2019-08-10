@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTodoList } from '../../store/todo/selectors';
-import { addTodo, removeTodo, toggleTodo } from '../../store/todo/actions';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo, removeTodo, toggleTodo } from '../../store/todo/actions'
+import { getTodoList } from '../../store/todo/selectors'
 
 const Todos: React.FC<{}> = () => {
-  const [text, setText] = useState('');
-  const todos = useSelector(getTodoList);
-  const dispatch = useDispatch();
+  const [text, setText] = useState('')
+  const todos = useSelector(getTodoList)
+  const dispatch = useDispatch()
   const dispatchAddTodo = () =>
-    dispatch(addTodo({ id: new Date().getTime(), done: false, text }));
-  const dispatchRemoveTodo = (id: number) => dispatch(removeTodo(id));
-  const dispatchToggleTodo = (id: number) => dispatch(toggleTodo(id));
+    dispatch(addTodo({ id: new Date().getTime(), done: false, text }))
+  const dispatchRemoveTodo = (id: number) => dispatch(removeTodo(id))
+  const dispatchToggleTodo = (id: number) => dispatch(toggleTodo(id))
   return (
     <div>
       <ul>
@@ -29,7 +29,7 @@ const Todos: React.FC<{}> = () => {
       <input type="text" value={text} onChange={e => setText(e.target.value)} />
       <button onClick={dispatchAddTodo}>add</button>
     </div>
-  );
-};
+  )
+}
 
-export default Todos;
+export default Todos

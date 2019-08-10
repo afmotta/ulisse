@@ -10,11 +10,28 @@ $ yarn new:redux
 
 and following the instructions.
 
+## Create a new React component
+
+Using Hygen, we can create a new React component with the command 
+
+```sh
+$ yarn new:react-component <component_name>
+```
+
+and following the instructions.
+
 # Monorepo
 
 Note that this repo has been forked to demonstrate adding a create-react-app based application to the repo.
 
-Installation of dependencies and library tests can be run by running:
+The first time you clone the repo you need to install the dependencies and bootstrap the lerna mono-repo.
+For doing it run in the shell the command:
+
+```sh
+$ yarn install:bootstrap
+```
+
+To clean and install the dependencies, build the libraries and run the test, execute:
 
 ```sh
 $ yarn clean:install && yarn build:declarations && yarn build && yarn test
@@ -34,52 +51,73 @@ $ yarn test:ui
 
 Note that this fails currently!
 
+### Storybook
+
+In order to run storybook execute in the root folder
+
+```sh
+$ yarn storybook
+```
+
+To change the theme used by the library you need to edit the file `.storybook/config.tsx`, specifically at line
+
+```
+import { primaryTheme } from '../packages/components/src/themes'
+```
+
+The library themes are defined into the package `@shipfirst/react-components`
+
+
 ---
 
 Original readme
 
-- [Monorepo](#monorepo)
-  - [The goal](#the-goal)
-  - [Pre-requirements](#pre-requirements)
-    - [Local NPM registry](#local-npm-registry)
-  - [Getting started](#getting-started)
-    - [Repository initialization](#repository-initialization)
-    - [Setting up package manager](#setting-up-package-manager)
-    - [TypeScript](#typescript)
-      - [Installation](#installation)
-      - [Configuration](#configuration)
-      - [Building packages](#building-packages)
-      - [Checking types](#checking-types)
-    - [Peer dependencies](#peer-dependencies)
-    - [Static code analyser](#static-code-analyser)
-      - [Tslint](#tslint)
-      - [Stylelint](#stylelint)
-      - [All together](#all-together)
-    - [Code formatting](#code-formatting)
-    - [Testing](#testing)
-    - [Storybook](#storybook)
-      - [Installation](#installation-1)
-      - [Typescript](#typescript)
-      - [Tslint](#tslint-1)
-      - [Addons](#addons)
-    - [Final build](#final-build)
-    - [Committing your work](#committing-your-work)
-    - [Package publishing](#package-publishing)
-  - [First package](#first-package)
-    - [Development](#development)
-    - [Storybook](#storybook-1)
-    - [Testing](#testing-1)
-    - [Build](#build)
-    - [Publish](#publish)
-  - [Multiple packages](#multiple-packages)
-    - [Development](#development-1)
-      - [Declarations generation](#declarations-generation)
-      - [Tslint](#tslint-2)
-      - [Drawbacks](#drawbacks)
-    - [Typescript](#typescript-1)
-    - [Storybook](#storybook-2)
-    - [Jest](#jest)
-  - [Final words](#final-words)
+- [ShipFirst](#ShipFirst)
+  - [Create a new redux module](#Create-a-new-redux-module)
+  - [Create a new React component](#Create-a-new-React-component)
+- [Monorepo](#Monorepo)
+    - [Storybook](#Storybook)
+  - [The goal](#The-goal)
+  - [Pre-requirements](#Pre-requirements)
+    - [Local NPM registry](#Local-NPM-registry)
+  - [Getting started](#Getting-started)
+    - [Repository initialization](#Repository-initialization)
+    - [Setting up package manager](#Setting-up-package-manager)
+    - [TypeScript](#TypeScript)
+      - [Installation](#Installation)
+      - [Configuration](#Configuration)
+      - [Building packages](#Building-packages)
+      - [Checking types](#Checking-types)
+    - [Peer dependencies](#Peer-dependencies)
+    - [Static code analyser](#Static-code-analyser)
+      - [Tslint](#Tslint)
+      - [Stylelint](#Stylelint)
+      - [All together](#All-together)
+    - [Code formatting](#Code-formatting)
+    - [Testing](#Testing)
+    - [Storybook](#Storybook-1)
+      - [Installation](#Installation-1)
+      - [Typescript](#Typescript)
+      - [Tslint](#Tslint-1)
+      - [Addons](#Addons)
+    - [Final build](#Final-build)
+    - [Committing your work](#Committing-your-work)
+    - [Package publishing](#Package-publishing)
+  - [First package](#First-package)
+    - [Development](#Development)
+    - [Storybook](#Storybook-2)
+    - [Testing](#Testing-1)
+    - [Build](#Build)
+    - [Publish](#Publish)
+  - [Multiple packages](#Multiple-packages)
+    - [Development](#Development-1)
+      - [Declarations generation](#Declarations-generation)
+      - [Tslint](#Tslint-2)
+      - [Drawbacks](#Drawbacks)
+    - [Typescript](#Typescript-1)
+    - [Storybook](#Storybook-3)
+    - [Jest](#Jest)
+  - [Final words](#Final-words)
 
 Everyone is tired with creating templates for each type of NPM package with pre-configured skeletons, managing different dependencies across own packages, linking packages for local development with instant packages rebuilding which is "wasting developers time", writing proper configuration for linters, `babel`, `typescript`, etc, and adds a lot of repeatable steps for developers. The worst part appears when one of the key dependencies is getting breaking change upgrade, for instance `babel` - it produces plenty of duplicated changes in each of the package, massive amount of merge request to be reviewed and introduces high change to make a mistake (or even worse - forget about change) in one of the packages. Hopefully, it's year 2018 and JavaScript world has a solution for managing group of the packages in the one repository. This approach calls `monorepo`.
 
@@ -269,7 +307,7 @@ module.exports = (api) => {
         ignore: [
           '**/*.test.tsx',
           '**/*.test.ts',
-          '**/*.story.tsx',
+          '**/*.stories.tsx',
           '__snapshots__',
           '__tests__',
           '__stories__',
@@ -727,7 +765,7 @@ yarn add -DW @types/storybook__react @types/storybook__addon-actions @types/stor
 Storybook inits application as it is javascript based, as we have typescript everywhere, we have to change path resolution for stories in `storybook/config.js` file:
 
 ```typescript
-const req = require.context('../packages', true, /.story.tsx?$/);
+const req = require.context('../packages', true, /.stories.tsx?$/);
 ```
 
 Last but not least part is `webpack.config.js` inside `storybook` folder, just create it with next content:
@@ -819,7 +857,7 @@ Next step is to add `import '@storybook/addon-knobs/register';` to the `storyboo
 import { configure, addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-const req = require.context('../packages', true, /.story.tsx?$/);
+const req = require.context('../packages', true, /.stories.tsx?$/);
 function loadStories() {
   addDecorator(withKnobs);
   req.keys().forEach((filename) => req(filename));
@@ -1032,7 +1070,7 @@ Input.defaultProps = {
 
 ### Storybook
 
-`storybook` is configured, so it's time to create first story and test first package as well as `storybook` and `typescript` integration. Just create `Input.story.tsx` inside `input` package.
+`storybook` is configured, so it's time to create first story and test first package as well as `storybook` and `typescript` integration. Just create `Input.stories.tsx` inside `input` package.
 
 ```typescript
 import { text } from '@storybook/addon-knobs';
@@ -1320,7 +1358,7 @@ We would need:
     "declaration": true
   },
   "include": [],
-  "exclude": ["**/*.story.*", "**/*.test.*", "dist"]
+  "exclude": ["**/*.stories.*", "**/*.test.*", "dist"]
 }
 ```
 
