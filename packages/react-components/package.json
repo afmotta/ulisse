@@ -1,6 +1,6 @@
 {
   "name": "@shipfirst/react-components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Shipfirst React components library",
   "license": "ISC",
   "main": "./dist/index.js",
