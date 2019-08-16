@@ -22,17 +22,24 @@ describe('auth-store-base', () => {
   let fireErrorEvent: () => void;
   const firebaseMock = {
     auth: () => ({
-      onAuthStateChanged: (onAuth: (p: AuthData) => void, onError: (p: Error) => void) => {
+      onAuthStateChanged: (
+        onAuth: (p: AuthData) => void,
+        onError: (p: Error) => void,
+      ) => {
         fireAuthDataEvent = () => onAuth(authData);
-        fireErrorEvent = () => onError(new Error())
+        fireErrorEvent = () => onError(new Error());
         return () => {};
       },
     }),
   };
-  sagaMiddleware.run(authSaga, { firebase: firebaseMock });
+  sagaMiddleware.run(authSaga, {
+    firebase: (firebaseMock as unknown) as firebase.app.App,
+  });
   it('the store updates when updateAuthSuccess is dispatched', () => {
     expect(selectors.getIsAuthenticated(store.getState())).toEqual(false);
-    expect(selectors.getAuthData(store.getState())).toEqual(initialState.authData)
+    expect(selectors.getAuthData(store.getState())).toEqual(
+      initialState.authData,
+    );
     fireAuthDataEvent();
     expect(selectors.getIsAuthenticated(store.getState())).toEqual(true);
     expect(selectors.getAuthData(store.getState())).toEqual(authData);
@@ -42,6 +49,8 @@ describe('auth-store-base', () => {
     expect(selectors.getAuthData(store.getState())).toEqual(authData);
     fireErrorEvent();
     expect(selectors.getIsAuthenticated(store.getState())).toEqual(false);
-    expect(selectors.getAuthData(store.getState())).toEqual(initialState.authData)
+    expect(selectors.getAuthData(store.getState())).toEqual(
+      initialState.authData,
+    );
   });
 });

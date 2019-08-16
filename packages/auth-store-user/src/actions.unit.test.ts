@@ -80,10 +80,8 @@ describe('auth-store-base actions', () => {
         const credential = firebase.auth.EmailAuthProvider.credential(
           'email',
           'password',
-        )
-        expect(
-          actions.logInWithCredentialRequest(credential),
-        ).toEqual({
+        );
+        expect(actions.logInWithCredentialRequest(credential)).toEqual({
           type: actions.LOGIN_REQUEST,
           payload: { credential },
           meta: {

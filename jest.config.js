@@ -28,5 +28,6 @@ module.exports = {
   testPathIgnorePatterns: ['packages/ui'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
-}
+};

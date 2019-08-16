@@ -1,7 +1,7 @@
 export type UserData = {
-  [key: string]: unknown
-}
+  [key: string]: unknown;
+};
 
 export type UserState = Readonly<{
-  userData: UserData
-}>
+  userData: UserData;
+}>;
