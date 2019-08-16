@@ -126,7 +126,7 @@ describe('configureStore', () => {
         action: A,
       ): S => {
         if (state) {
-          return action.type === 'INCREMENT' ? state : reducer(state, action);
+          return action.type === 'INCREMENT' ? state : _reducer(state, action);
         }
         return ({ counter: 0 } as unknown) as S;
       };

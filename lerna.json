@@ -5,7 +5,8 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "registry": "https://pkgs.dev.azure.com/shipfirst/_packaging/shipfirst/npm/registry/"
     }
   }
 }
