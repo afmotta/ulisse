@@ -1,6 +1,6 @@
+import fb from 'firebase';
 import { eventChannel } from 'redux-saga';
 import { call, cancelled, fork, put, take } from 'redux-saga/effects';
-import fb from 'firebase';
 import * as actions from './actions';
 import { AuthData } from './types';
 
@@ -30,7 +30,9 @@ export function* watchForAuthUpdate(firebase: fb.app.App) {
         } else {
           yield call(auth.signInAnonymously);
         }
-      } catch (e) {}
+      } catch (e) {
+        console.error(e);
+      }
     }
   } finally {
     if (yield cancelled()) {

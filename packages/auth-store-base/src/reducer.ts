@@ -1,7 +1,7 @@
 import pick from 'lodash/fp/pick';
-import { createReducer, ActionType } from 'typesafe-actions';
+import { ActionType, createReducer } from 'typesafe-actions';
 import * as actions from './actions';
-import { AuthState, AuthData } from './types';
+import { AuthData, AuthState } from './types';
 
 export const KEY = 'auth';
 

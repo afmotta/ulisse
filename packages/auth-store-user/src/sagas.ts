@@ -1,19 +1,19 @@
-import { ActionType } from 'typesafe-actions';
-import { eventChannel } from 'redux-saga';
-import {
-  call,
-  cancelled,
-  race,
-  put,
-  select,
-  take,
-  takeLatest,
-} from 'redux-saga/effects';
-import fb from 'firebase';
 import {
   actions as authBaseActions,
   selectors as authBaseSelectors,
 } from '@shipfirst/auth-store-base';
+import fb from 'firebase';
+import { eventChannel } from 'redux-saga';
+import {
+  call,
+  cancelled,
+  put,
+  race,
+  select,
+  take,
+  takeLatest,
+} from 'redux-saga/effects';
+import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
 export function* watchForUserDataUpdate(firebase: fb.app.App) {

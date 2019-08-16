@@ -1,4 +1,4 @@
-import { createReducer, ActionType } from 'typesafe-actions';
+import { ActionType, createReducer } from 'typesafe-actions';
 import * as actions from './actions';
 import { UserState } from './types';
 

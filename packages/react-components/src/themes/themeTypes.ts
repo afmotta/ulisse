@@ -1,17 +1,17 @@
-export type ThemeType = {
-  borderRadius: string
+export interface ThemeType {
+  borderRadius: string;
   colors: {
-    primary: string
-    secondary: string
-  }
+    primary: string;
+    secondary: string;
+  };
 
   buttons: {
     variants: {
       primary: {
-        backgroundColor: string
-        borderRadius: string
-        color: string
-      }
-    }
-  }
+        backgroundColor: string;
+        borderRadius: string;
+        color: string;
+      };
+    };
+  };
 }

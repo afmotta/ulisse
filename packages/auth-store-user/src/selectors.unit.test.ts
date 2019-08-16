@@ -1,5 +1,5 @@
-import * as selectors from './selectors';
 import { KEY } from './reducer';
+import * as selectors from './selectors';
 
 const state = {
   [KEY]: {

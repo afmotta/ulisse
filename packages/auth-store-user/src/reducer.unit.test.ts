@@ -1,4 +1,4 @@
-import { SYNC_USER_DATA, CLEAR_USER_DATA } from './actions';
+import { CLEAR_USER_DATA, SYNC_USER_DATA } from './actions';
 import reducer, { initialState } from './reducer';
 
 describe('user reducer', () => {

@@ -1,39 +1,35 @@
+import firebaseApp from 'firebase/app';
 import {
-  createStore,
-  Reducer,
-  applyMiddleware,
   Action,
   AnyAction,
-  Store,
+  applyMiddleware,
   compose,
-  StoreEnhancer,
+  createStore,
   Middleware,
+  Reducer,
+  Store,
+  StoreEnhancer,
 } from 'redux';
 import { composeWithDevTools, EnhancerOptions } from 'redux-devtools-extension';
 import { createLogger, ReduxLoggerOptions } from 'redux-logger';
 import {
-  persistStore,
-  persistReducer,
   PersistConfig,
   Persistor,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware, { Saga } from 'redux-saga';
 import { middleware as thunkMiddleware } from 'redux-saga-thunk';
-import firebaseApp from 'firebase/app';
 
-export interface Types {}
-
-export type RootState = Types extends { RootState: infer T } ? T : any;
-
-type FirebaseConfig = {
+interface FirebaseConfig {
   apiKey: string;
   authDomain: string;
   databaseURL: string;
   projectId: string;
   storageBucket: string;
   messagingSenderId: string;
-};
+}
 
 /**
  * Options for `configureStore()`.
@@ -64,7 +60,7 @@ export interface ConfigureStoreOptions<S = any, A extends Action = AnyAction> {
   /**
    * An array of Redux middleware to install.
    */
-  middlewares?: Middleware<{}, S>[];
+  middlewares?: Array<Middleware<{}, S>>;
 
   /*
    * Whether to add a pesistance layer to the store. Use boolean for a default opinionated configuration
@@ -108,7 +104,7 @@ export const configureStore = <S = any, A extends Action = AnyAction>(
 
   const sagaMiddleware = createSagaMiddleware();
 
-  const middlewares: Middleware<{}, S>[] = [
+  const middlewares: Array<Middleware<{}, S>> = [
     ...userMiddlewares,
     thunkMiddleware,
     sagaMiddleware,

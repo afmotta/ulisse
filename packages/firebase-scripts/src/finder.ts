@@ -1,5 +1,5 @@
-import { includes } from 'lodash';
 import * as glob from 'glob';
+import { includes } from 'lodash';
 
 export default (
   extension: string,

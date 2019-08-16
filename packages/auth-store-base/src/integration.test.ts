@@ -1,8 +1,8 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import reducer, { KEY, initialState } from './reducer';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import createSagaMiddleware, { Saga } from 'redux-saga';
+import reducer, { initialState, KEY } from './reducer';
 import authSaga from './sagas';
 import * as selectors from './selectors';
-import createSagaMiddleware, { Saga } from 'redux-saga';
 import { AuthData } from './types';
 
 describe('auth-store-base', () => {
@@ -28,7 +28,9 @@ describe('auth-store-base', () => {
       ) => {
         fireAuthDataEvent = () => onAuth(authData);
         fireErrorEvent = () => onError(new Error());
-        return () => {};
+        return () => {
+          /* */
+        };
       },
     }),
   };

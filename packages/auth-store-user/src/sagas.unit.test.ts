@@ -1,12 +1,13 @@
-import { select, takeLatest } from 'redux-saga/effects';
-import { expectSaga, testSaga } from 'redux-saga-test-plan';
-import * as matchers from 'redux-saga-test-plan/matchers';
-import * as actions from './actions';
-import * as sagas from './sagas';
 import {
   actions as authBaseActions,
   selectors,
 } from '@shipfirst/auth-store-base';
+import noop from 'lodash/noop';
+import { expectSaga, testSaga } from 'redux-saga-test-plan';
+import * as matchers from 'redux-saga-test-plan/matchers';
+import { select, takeLatest } from 'redux-saga/effects';
+import * as actions from './actions';
+import * as sagas from './sagas';
 import { UserData } from './types';
 
 jest.mock('firebase');
@@ -25,7 +26,7 @@ describe('@shipfirst/auth-store-user - sagas', () => {
                 setImmediate(() => {
                   cb(userData);
                 });
-                return () => {};
+                return noop;
               },
             }),
           }),
@@ -42,7 +43,7 @@ describe('@shipfirst/auth-store-user - sagas', () => {
           collection: () => ({
             doc: () => ({
               onSnapshot: () => {
-                return () => {};
+                return noop;
               },
             }),
           }),
@@ -60,7 +61,7 @@ describe('@shipfirst/auth-store-user - sagas', () => {
         collection: () => ({
           doc: () => ({
             onSnapshot: () => {
-              return () => {};
+              return noop;
             },
           }),
         }),
@@ -74,7 +75,7 @@ describe('signUp', () => {
   it('puts a success action in case of successful sign up', () => {
     return expectSaga(
       sagas.signUp,
-      { createUserWithEmailAndPassword: () => {} },
+      { createUserWithEmailAndPassword: noop },
       actions.signUpRequest('email', 'password'),
     )
       .put(actions.signUpSuccess(actions.SIGN_UP))
@@ -98,7 +99,7 @@ describe('logIn', () => {
   it('puts a success action in case of successful login', () => {
     return expectSaga(
       sagas.logIn,
-      { signInWithCredential: () => {} },
+      { signInWithCredential: noop },
       actions.logInWithEmailAndPasswordRequest('email', 'password'),
     )
       .put(actions.logInSuccess(actions.LOGIN))
@@ -122,7 +123,7 @@ describe('initPasswordReset', () => {
   it('puts a success action in case of successful initPasswordReset', () => {
     return expectSaga(
       sagas.initPasswordReset,
-      { sendPasswordResetEmail: () => {} },
+      { sendPasswordResetEmail: noop },
       actions.initPasswordResetRequest('email'),
     )
       .put(actions.initPasswordResetSuccess(actions.INIT_PASSWORD_RESET))
@@ -151,7 +152,7 @@ describe('confirmPasswordReset', () => {
   it('puts a success action in case of successful confirmPasswordReset', () => {
     return expectSaga(
       sagas.confirmPasswordReset,
-      { confirmPasswordReset: () => {} },
+      { confirmPasswordReset: noop },
       actions.confirmPasswordResetRequest('code', 'email'),
     )
       .put(actions.confirmPasswordResetSuccess(actions.CONFIRM_PASSWORD_RESET))
@@ -182,8 +183,8 @@ describe('updateEmail', () => {
       sagas.updateEmail,
       {
         currentUser: {
-          updateEmail: () => {},
-          reauthenticateWithCredential: () => {},
+          updateEmail: noop,
+          reauthenticateWithCredential: noop,
         },
       },
       actions.updateEmailRequest('email', 'password'),
@@ -233,7 +234,7 @@ describe('updateEmail', () => {
           updateEmail: () => {
             throw new Error('error');
           },
-          reauthenticateWithCredential: () => {},
+          reauthenticateWithCredential: noop,
         },
       },
       actions.updateEmailRequest('code', 'email'),
@@ -248,8 +249,8 @@ describe('updatePassword', () => {
       sagas.updatePassword,
       {
         currentUser: {
-          updatePassword: () => {},
-          reauthenticateWithCredential: () => {},
+          updatePassword: noop,
+          reauthenticateWithCredential: noop,
         },
       },
       actions.updatePasswordRequest('oldPassword', 'newPassword'),
@@ -299,7 +300,7 @@ describe('updatePassword', () => {
           updatePassword: () => {
             throw new Error('error');
           },
-          reauthenticateWithCredential: () => {},
+          reauthenticateWithCredential: noop,
         },
       },
       actions.updatePasswordRequest('oldPassword', 'newPassword'),
@@ -316,7 +317,7 @@ describe('updatePassword', () => {
     it('puts a success action in case of successful logout', () => {
       return expectSaga(
         sagas.logOut,
-        { signOut: () => {} },
+        { signOut: noop },
         actions.logOutRequest(),
       )
         .put(actions.logOutSuccess(actions.LOGOUT))

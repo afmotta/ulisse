@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-import firestoreConfig from './firestore'
+import rc from 'rc';
+import firestoreConfig from './firestore';
 import {
   compiler as compileFunctionsConfig,
   deploy as deployFunctionsConfig,
-} from './functions'
+} from './functions';
 
-var conf = require('rc')('firebase-scripts-', {
+const conf = rc('firebase-scripts-', {
   firestore: {
     rules: {
       includeNodesModules: true,
@@ -18,14 +19,14 @@ var conf = require('rc')('firebase-scripts-', {
       excludes: [],
     },
   },
-})
+});
 
 firestoreConfig(
   conf.firestore.rules.includeNodesModules,
   conf.firestore.rules.excludes,
-)
+);
 compileFunctionsConfig(
   conf.functions.config.includeNodesModules,
   conf.functions.config.excludes,
-)
-deployFunctionsConfig()
+);
+deployFunctionsConfig();

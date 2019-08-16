@@ -1,5 +1,5 @@
-import { createStandardAction } from 'typesafe-actions';
 import firebase from 'firebase';
+import { createStandardAction } from 'typesafe-actions';
 import { UserData } from './types';
 
 export const SYNC_USER_DATA = 'USER/SYNC_USER_DATA';

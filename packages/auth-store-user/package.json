@@ -6,6 +6,7 @@
   "dependencies": {
     "@shipfirst/auth-store-base": "^0.0.1",
     "@shipfirst/core": "^0.0.1",
+    "firebase": "^6.2.4",
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",

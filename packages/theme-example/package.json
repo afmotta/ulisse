@@ -15,6 +15,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@shipfirst/react-components": "^0.0.1"
+    "@shipfirst/react-components": "^0.0.1",
+    "styled-components": "^4.3.2"
   }
 }

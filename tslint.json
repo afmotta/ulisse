@@ -15,7 +15,19 @@
       "jsx-double"
     ],
     "no-implicit-dependencies": false,
-    "interface-name": false
+    "interface-name": false,
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
+    "no-console": false,
+    "variable-name": {
+      "options": [
+        "require-const-for-all-caps",
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
+    }
   },
   "linterOptions": {
     "exclude": ["**/node_modules/**"]

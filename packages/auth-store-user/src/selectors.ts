@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 import { KEY } from './reducer';
 import { UserState } from './types';
 
-type RootState = {
+interface RootState {
   [KEY]: UserState;
-};
+}
 
 const getState = (state: RootState): UserState => state[KEY];
 

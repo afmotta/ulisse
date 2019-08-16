@@ -1,3 +1,4 @@
+import noop from 'lodash/noop';
 import { expectSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
 import * as actions from './actions';
@@ -19,7 +20,7 @@ describe('auth-store-base sagas', () => {
             setImmediate(() => {
               onAuth(authData);
             });
-            return () => {};
+            return noop;
           },
         }),
       })
@@ -34,7 +35,7 @@ describe('auth-store-base sagas', () => {
             setImmediate(() => {
               onError(error);
             });
-            return () => {};
+            return noop;
           },
         }),
       })
@@ -51,7 +52,7 @@ describe('auth-store-base sagas', () => {
             setImmediate(() => {
               onAuth(authData);
             });
-            return () => {};
+            return noop;
           },
         }),
       })

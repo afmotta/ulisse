@@ -1,16 +1,16 @@
-import { ThemeType } from '@shipfirst/react-components'
-import { createGlobalStyle } from 'styled-components'
+import { ThemeType } from '@shipfirst/react-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: serif;
   }
-`
+`;
 
 const colors = {
   primary: '#F79A3E',
   secondary: '#EB4962',
-}
+};
 
 export const Theme: ThemeType = {
   borderRadius: '5px',
@@ -29,4 +29,4 @@ export const Theme: ThemeType = {
       },
     },
   },
-}
+};
