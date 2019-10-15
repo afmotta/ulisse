@@ -1,7 +1,7 @@
 {
-  "name": "@shipfirst/react-components",
+  "name": "@ulisse/react-components",
   "version": "0.0.2",
-  "description": "Shipfirst React components library",
+  "description": "Ulisse React components library",
   "license": "ISC",
   "main": "./dist/index.js",
   "files": [
@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@ssh.dev.azure.com:v3/shipfirst/shipfirst/shipfirst"
+    "url": ""
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

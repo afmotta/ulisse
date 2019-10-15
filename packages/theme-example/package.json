@@ -1,5 +1,5 @@
 {
-  "name": "@shipfirst/theme-example",
+  "name": "@ulisse/theme-example",
   "version": "0.0.2",
   "description": "Example theme",
   "license": "ISC",
@@ -9,13 +9,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@ssh.dev.azure.com:v3/shipfirst/shipfirst/shipfirst"
+    "url": ""
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@shipfirst/react-components": "^0.0.2",
+    "@ulisse/react-components": "^0.0.2",
     "styled-components": "^4.3.2"
   }
 }

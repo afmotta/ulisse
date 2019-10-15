@@ -7,4 +7,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **fixes:** code style and jest config ([365d7bf](https://ssh.dev.azure.com/v3/shipfirst/shipfirst/shipfirst/commits/365d7bf))
+- **fixes:** code style and jest config

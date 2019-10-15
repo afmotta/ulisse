@@ -1,4 +1,4 @@
-import { ThemeType } from '@shipfirst/react-components';
+import { ThemeType } from '@ulisse/react-components';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`

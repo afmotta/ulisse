@@ -1,4 +1,4 @@
-# @shipfirst/core
+# @ulisse/core
 
 > Redux store configuration with opinionated defaults
 
@@ -37,7 +37,7 @@ const { store, persistor } = configureStore<
 ```javascript
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { ConnectedApp } from '@shipfirst/core';
+import { ConnectedApp } from '@ulisse/core';
 
 <ConnectedApp {...store}>
   <Counter />

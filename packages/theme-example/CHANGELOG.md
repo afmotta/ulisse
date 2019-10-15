@@ -5,4 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 0.0.2 (2019-08-16)
 
-**Note:** Version bump only for package @shipfirst/theme-example
+**Note:** Version bump only for package @ulisse/theme-example

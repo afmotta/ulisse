@@ -18,7 +18,7 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   moduleNameMapper: {
-    '@shipfirst/(.+)$': '<rootDir>packages/$1/src',
+    '@ulisse/(.+)$': '<rootDir>packages/$1/src',
   },
   modulePathIgnorePatterns: ['dist'],
   roots: ['<rootDir>packages'],

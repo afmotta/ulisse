@@ -1,9 +1,9 @@
-// import { GlobalStyle, Theme } from '@shipfirst/react-components'
-import { GlobalStyle, Theme } from '@shipfirst/theme-example'
-import { withKnobs } from '@storybook/addon-knobs'
-import { addDecorator, configure } from '@storybook/react'
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
+// import { GlobalStyle, Theme } from '@ulisse/react-components'
+import { GlobalStyle, Theme } from '@ulisse/theme-example';
+import { withKnobs } from '@storybook/addon-knobs';
+import { addDecorator, configure } from '@storybook/react';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
 
 const themeDecorator = (storyFn: any) => (
   <ThemeProvider theme={Theme}>
@@ -12,13 +12,13 @@ const themeDecorator = (storyFn: any) => (
       {storyFn()}
     </>
   </ThemeProvider>
-)
+);
 
-const req = require.context('../packages', true, /.stories.tsx?$/)
+const req = require.context('../packages', true, /.stories.tsx?$/);
 function loadStories() {
-  addDecorator(withKnobs)
-  addDecorator(themeDecorator)
-  req.keys().forEach(filename => req(filename))
+  addDecorator(withKnobs);
+  addDecorator(themeDecorator);
+  req.keys().forEach(filename => req(filename));
 }
 
-configure(loadStories, module)
+configure(loadStories, module);

@@ -1,7 +1,7 @@
 import {
   actions as authBaseActions,
   selectors as authBaseSelectors,
-} from '@shipfirst/auth-store-base';
+} from '@ulisse/auth-store-base';
 import fb from 'firebase';
 import { eventChannel } from 'redux-saga';
 import {

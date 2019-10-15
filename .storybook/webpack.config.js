@@ -1,17 +1,17 @@
-const path = require('path')
-const { lstatSync, readdirSync } = require('fs')
+const path = require('path');
+const { lstatSync, readdirSync } = require('fs');
 
-const projectBaseFolder = path.resolve(__dirname, '../')
-const packagesBasePath = path.resolve(__dirname, '../', 'packages')
+const projectBaseFolder = path.resolve(__dirname, '../');
+const packagesBasePath = path.resolve(__dirname, '../', 'packages');
 const packages = readdirSync(packagesBasePath).filter(name =>
   lstatSync(path.join(packagesBasePath, name)).isDirectory(),
-)
+);
 
 const excludedFolders = [
   path.resolve(projectBaseFolder, 'node_modules'),
 ].concat(
   packages.map(name => path.resolve(packagesBasePath, name, 'node_modules')),
-)
+);
 
 module.exports = ({ baseConfig, env, config }) => {
   config.module.rules.push({
@@ -22,17 +22,17 @@ module.exports = ({ baseConfig, env, config }) => {
         loader: require.resolve('awesome-typescript-loader'),
       },
     ],
-  })
-  config.resolve.extensions.push('.ts', '.tsx')
+  });
+  config.resolve.extensions.push('.ts', '.tsx');
   Object.assign(config.resolve.alias, {
     ...packages.reduce(
       (acc, name) => ({
         ...acc,
-        [`@shipfirst/${name}`]: path.join(packagesBasePath, name, 'src'),
+        [`@ulisse/${name}`]: path.join(packagesBasePath, name, 'src'),
       }),
       {},
     ),
-  })
+  });
 
-  return config
-}
+  return config;
+};

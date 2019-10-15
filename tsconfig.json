@@ -13,7 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node", "jest"],
     "paths": {
-      "@shipfirst/*": ["packages/*/src"],
+      "@ulisse/*": ["packages/*/src"],
       "*": ["node_modules", "packages"]
     }
   },

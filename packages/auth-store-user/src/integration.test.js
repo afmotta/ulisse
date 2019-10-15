@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import * as authBase from '@shipfirst/auth-store-base';
+import * as authBase from '@ulisse/auth-store-base';
 import reducer, { KEY, initialState } from './reducer';
 import rootSaga from './sagas';
 import * as selectors from './selectors';

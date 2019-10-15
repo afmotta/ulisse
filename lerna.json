@@ -6,7 +6,7 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "registry": "https://pkgs.dev.azure.com/shipfirst/_packaging/shipfirst/npm/registry/"
+      "registry": ""
     }
   }
 }

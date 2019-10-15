@@ -7,12 +7,12 @@ Functional React components library made with `styled-components` and presented 
 Import the component library and the `ThemeProvider`
 
 ```
-import { Button, GlobalStyle, Theme } from '@shipfirst/react-components'
+import { Button, GlobalStyle, Theme } from '@ulisse/react-components'
 import { ThemeProvider } from 'styled-components'
 ```
 
 Include `GlobalStyle` and pass the `Theme` to the `ThemeProvider`.
-Include any component from the package `@shipfirst/react-components`, like `Button`
+Include any component from the package `@ulisse/react-components`, like `Button`
 
 ```
 <App>
@@ -27,7 +27,7 @@ Include any component from the package `@shipfirst/react-components`, like `Butt
 
 ## Theming
 
-We suggest ot create a new package to replace or extend the default theme provided by the base React component library `@shipfirst/react-components`
+We suggest ot create a new package to replace or extend the default theme provided by the base React component library `@ulisse/react-components`
 
 In order to create a new theme, create a new package that exports
 
@@ -38,7 +38,7 @@ export { Theme, GlobalStyle } from './theme/exampleTheme'
 and overrides the default theme
 
 ```
-import { ThemeType } from '@shipfirst/react-components'
+import { ThemeType } from '@ulisse/react-components'
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`

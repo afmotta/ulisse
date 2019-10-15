@@ -1,7 +1,7 @@
 import {
   actions as authBaseActions,
   selectors,
-} from '@shipfirst/auth-store-base';
+} from '@ulisse/auth-store-base';
 import noop from 'lodash/noop';
 import { expectSaga, testSaga } from 'redux-saga-test-plan';
 import * as matchers from 'redux-saga-test-plan/matchers';
@@ -12,7 +12,7 @@ import { UserData } from './types';
 
 jest.mock('firebase');
 
-describe('@shipfirst/auth-store-user - sagas', () => {
+describe('@ulisse/auth-store-user - sagas', () => {
   describe('watchForUserDataUpdate', () => {
     it('puts a success action if channel emits auth data', () => {
       const userData = {

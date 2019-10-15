@@ -1,5 +1,5 @@
 {
-  "name": "@shipfirst/auth-store-base",
+  "name": "@ulisse/auth-store-base",
   "version": "0.0.2",
   "main": "dist/index.js",
   "license": "MIT",

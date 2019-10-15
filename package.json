@@ -1,5 +1,5 @@
 {
-  "name": "shipfirst",
+  "name": "ulisse",
   "workspaces": [
     "packages/*"
   ],
