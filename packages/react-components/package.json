@@ -28,7 +28,7 @@
     "react-testing-library": "^8.0.1"
   },
   "dependencies": {
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "react": "^16.8.6",
     "styled-components": "^4.3.2"
   }
